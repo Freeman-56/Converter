@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>History</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <a th:href="@{/}">На главную</a>
+    <h1 align="center">История конвертаций</h1>
+    <table border="1" width="100%" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Исходная валюта</th>
+                <th>Целевая валюта</th>
+                <th>Исходная сумма</th>
+                <th>Получаемая сумма</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="conversion : ${conversions}">
+                <td><span th:text="${conversion.getValuteFrom().getCode()} + ' ' + '(' + ${conversion.getValuteFrom().getName() + ')'}"> Исходная валюта </span></td>
+                <td><span th:text="${conversion.getValuteTo().getCode()} + ' ' + '(' + ${conversion.getValuteTo().getName() + ')'}"> Целевая валюта </span></td>
+                <td><span th:text="${conversion.getValueFrom()}"> Исходная сумма </span></td>
+                <td><span th:text="${conversion.getValueTo()}"> Получаемая сумма </span></td>
+                <td><span th:text="${conversion.getDate().toString()}"> Дата </span></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
